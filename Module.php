@@ -486,15 +486,17 @@ class Module extends AbstractModule
         // temporary table. Currently, a simple string replacement of
         // aliases is used.
         // TODO Fix Omeka core for aliases in sub queries.
-        $subDql = str_replace('omeka_', 'akemo_', $subQb->getDQL());
+        // $subDql = strtr($subQb->getDQL(), [':omeka_' => ':akemo_']);
+        $subDql = strtr($subQb->getDQL(), ['omeka_' => 'akemo_']);
         /** @var \Doctrine\ORM\Query\Parameter $parameter */
         $subParams = $subQb->getParameters();
         foreach ($subParams as $parameter) {
-            $qb->setParameter(
-                str_replace('omeka_', 'akemo_', $parameter->getName()),
-                $parameter->getValue(),
-                $parameter->getType()
-            );
+            $qb
+                ->setParameter(
+                    strtr($parameter->getName(), ['omeka_' => 'akemo_']),
+                    $parameter->getValue(),
+                    $parameter->getType()
+                );
         }
 
         $qb
