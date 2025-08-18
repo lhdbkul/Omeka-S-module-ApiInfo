@@ -658,6 +658,7 @@ class ApiController extends AbstractRestfulController
                     } else {
                         $v = $res->value($field, ['all' => true]);
                         if ($v) {
+                            // TODO Don't use json_decode(json_encode()).
                             $resData[$field] = json_decode(json_encode($v), true);
                         }
                     }

@@ -114,8 +114,10 @@ class Module extends AbstractModule
         foreach ($appends as $append) {
             switch ($append) {
                 case 'owner_name':
-                    if (!empty($jsonLd['o:owner'])) {
-                        $jsonLd['o:owner'] = json_decode(json_encode($jsonLd['o:owner']), true);
+                    if (! empty($jsonLd['o:owner'])) {
+                        if (is_object($jsonLd['o:owner'])) {
+                            $jsonLd['o:owner'] = $jsonLd['o:owner']->jsonSerialize();
+                        }
                         $jsonLd['o:owner']['o:name'] = $resource->owner()->name();
                     }
                     break;
@@ -172,8 +174,8 @@ class Module extends AbstractModule
                                 '@id' => $v->apiUrl(),
                                 'o:id' => $v->id(),
                                 'o:type' => $v->getResourceJsonLdType(),
-                                'o:resource_class' => $resourceClass ? $resourceClass->getReference() : null,
-                                'o:resource_template' => $resourceTemplate ? $resourceTemplate->getReference() : null,
+                                'o:resource_class' => $resourceClass ? $resourceClass->getReference()->jsonSerialize() : null,
+                                'o:resource_template' => $resourceTemplate ? $resourceTemplate->getReference()->jsonSerialize() : null,
                                 'o:is_public' => $v->isPublic(),
                                 'o:title' => $v->displayTitle(),
                             ];
@@ -202,8 +204,8 @@ class Module extends AbstractModule
                                 '@id' => $v->apiUrl(),
                                 'o:id' => $v->id(),
                                 'o:type' => $v->getResourceJsonLdType(),
-                                'o:resource_class' => $resourceClass ? $resourceClass->getReference() : null,
-                                'o:resource_template' => $resourceTemplate ? $resourceTemplate->getReference() : null,
+                                'o:resource_class' => $resourceClass ? $resourceClass->getReference()->jsonSerialize() : null,
+                                'o:resource_template' => $resourceTemplate ? $resourceTemplate->getReference()->jsonSerialize() : null,
                                 'o:is_public' => $v->isPublic(),
                                 'o:title' => $v->displayTitle(),
                             ];
@@ -296,9 +298,13 @@ class Module extends AbstractModule
 
         if ($jsonLd['o:resource_class']) {
             $classRef = $jsonLd['o:resource_class'];
-            $class = $services->get('Omeka\ApiManager')->read('resource_classes', ['id' => $classRef->id()], [], ['initialize' => false])->getContent();
-            $classRef = $jsonLd['o:resource_class'];
-            $jsonLd['o:resource_class'] = $classRef->jsonSerialize();
+            if (is_object($classRef)) {
+                $classRefId = $classRef->id();
+                $jsonLd['o:resource_class'] = $classRef->jsonSerialize();
+            } else {
+                $classRefId = $classRef['o:id'];
+            }
+            $class = $services->get('Omeka\ApiManager')->read('resource_classes', ['id' => $classRefId], [], ['initialize' => false])->getContent();
             if ($appendTerm) {
                 $jsonLd['o:resource_class']['o:term'] = $class->term();
             }
@@ -312,7 +318,9 @@ class Module extends AbstractModule
 
         foreach (['o:title_property', 'o:description_property'] as $key) {
             if (!empty($jsonLd[$key])) {
-                $jsonLd[$key] = $jsonLd[$key]->jsonSerialize();
+                if (is_object($jsonLd[$key])) {
+                    $jsonLd[$key] = $jsonLd[$key]->jsonSerialize();
+                }
                 $property = $properties[$jsonLd[$key]['o:id']];
                 if ($appendTerm) {
                     $jsonLd[$key]['o:term'] = $property['term'];
@@ -328,11 +336,16 @@ class Module extends AbstractModule
 
         /** @var \Omeka\Api\Representation\ResourceTemplatePropertyRepresentation $rtp */
         foreach ($jsonLd['o:resource_template_property'] as $key => $rtp) {
-            $property = $rtp->property();
-            $rtp = $rtp->jsonSerialize();
-            $rtp['o:property'] = $property->getReference()->jsonSerialize();
-            $rtp['o:property']['o:term'] = $properties[$rtp['o:property']['o:id']]['term'];
-            $rtp['o:property']['o:label'] = $translator->translate($properties[$rtp['o:property']['o:id']]['label']);
+            if (is_object($rtp)) {
+                $property = $rtp->property();
+                $rtp = $rtp->jsonSerialize();
+                $rtp['o:property'] = $property->getReference()->jsonSerialize();
+                $propertyId = $property->id();
+            } else {
+                $propertyId = $properties[$rtp['o:property']['o:id']];
+            }
+            $rtp['o:property']['o:term'] = $properties[$propertyId]['term'];
+            $rtp['o:property']['o:label'] = $translator->translate($properties[$propertyId]['label']);
             $jsonLd['o:resource_template_property'][$key] = $rtp;
         }
 
@@ -346,8 +359,8 @@ class Module extends AbstractModule
         /** @var \Omeka\Api\Representation\SitePageBlockRepresentation $block */
         $jsonLd = $event->getParam('jsonLd');
         foreach ($jsonLd['o:block'] as $key => $block) {
-            if ($block->layout() === 'contactUs') {
-                $jsonBlock = $block->jsonSerialize();
+            if ((is_object($block) ? $block->layout() : $block['o:layout']) === 'contactUs') {
+                $jsonBlock = is_array($block) ? $block : $block->jsonSerialize();
                 $jsonBlock['o:data']['csrf'] = (new \Laminas\Form\Element\Csrf('csrf_' . $jsonLd['o:id']))->getValue();
                 $jsonLd['o:block'][$key] = $jsonBlock;
             }
