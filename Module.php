@@ -503,8 +503,9 @@ class Module extends AbstractModule
 
         /** @see \Omeka\Mvc\MvcListeners::preparePublicSite() */
         // Need to set the site for site settings.
+        $siteId = $site->id();
         $siteSettings = $services->get('Omeka\Settings\Site');
-        $siteSettings->setTargetId($site->id());
+        $siteSettings->setTargetId($siteId);
 
         // Enable the theme in the view stack to allow to use specific template.
         $services->get('ControllerPluginManager')->get('currentSite')->setSite($site);
@@ -534,7 +535,7 @@ class Module extends AbstractModule
 
         // Set the runtime locale and translator language to the configured site
         // locale.
-        $locale = $siteSettings->get('locale');
+        $locale = $siteSettings->get('locale', null, $siteId);
         if ($locale) {
             if (extension_loaded('intl')) {
                 \Locale::setDefault($locale);
