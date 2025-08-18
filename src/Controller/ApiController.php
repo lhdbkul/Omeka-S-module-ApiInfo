@@ -1097,7 +1097,7 @@ class ApiController extends AbstractRestfulController
      */
     protected function cleanQuery($keepPagination = false)
     {
-        if (!is_null($this->cleanQuery)) {
+        if ($this->cleanQuery !== null) {
             if ($keepPagination) {
                 return $this->cleanQuery;
             }
@@ -1208,7 +1208,7 @@ class ApiController extends AbstractRestfulController
         // $locale = $translator->getLocale();
         $locale = $this->params()->fromQuery('locale', 'en');
         $translations = $translator->getAllMessages($translatorTextDomain, $locale);
-        return is_null($translations)
+        return $translations === null
             ? []
             : $translations->getArrayCopy();
     }
