@@ -819,17 +819,13 @@ class ApiController extends AbstractRestfulController
             // because any type can have a resource, in particular custom vocab.
             // $values = $resource->value($termBase, ['all' => true, 'type' => ['resource', 'resource:item', 'resource:itemset', 'resource:media', 'resource:annotation']]);
             $values = $resource->value($termBase, ['all' => true]);
-            return array_filter(array_map(function ($v) {
-                return $v->valueResource();
-            }, $values));
+            return array_filter(array_map(fn ($v) => $v->valueResource(), $values));
         };
 
         $childrenResources = function (AbstractResourceEntityRepresentation $resource) use ($termChild): array {
             // Same remark.
             $values = $resource->value($termChild, ['all' => true]);
-            return array_filter(array_map(function ($v) {
-                return $v->valueResource();
-            }, $values));
+            return array_filter(array_map(fn ($v) => $v->valueResource(), $values));
         };
 
         if (count($roots) === 1) {
@@ -1430,22 +1426,14 @@ class ApiController extends AbstractRestfulController
     }
 
     /**
-     * @return array
-     */
-    protected function getConfig()
-    {
-        return $this->config;
-    }
-
-    /**
      * @return bool
      */
     protected function hasResource($resourceName)
     {
-        return (bool) @$this->getConfig()['api_adapters']['invokables'][$resourceName];
+        return !empty($this->config['api_adapters']['invokables'][$resourceName]);
     }
 
-    protected function zip(string $resource, $result)
+    protected function zip(string $resource, $result): void
     {
         require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 

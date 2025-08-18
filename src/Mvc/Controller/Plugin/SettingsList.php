@@ -39,8 +39,6 @@ class SettingsList extends AbstractPlugin
             ->executeQuery($this->qb)
             ->fetchAllKeyValue();
 
-        return array_map(function ($v) {
-            return json_decode($v, true);
-        }, $result);
+        return array_map(fn ($v) => json_decode($v, true), $result);
     }
 }

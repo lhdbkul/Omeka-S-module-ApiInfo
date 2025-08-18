@@ -57,9 +57,7 @@ class SiteSettingsList extends AbstractPlugin
             ])
             ->fetchAllKeyValue();
 
-        $result = array_map(function ($v) {
-            return json_decode($v, true);
-        }, $result);
+        $result = array_map(fn ($v) => json_decode($v, true), $result);
 
         // Manage the special case for the theme settings.
         if (isset($result[$themeKey])) {

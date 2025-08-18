@@ -480,6 +480,13 @@ class Module extends AbstractModule
         $subQb
             ->groupBy('akemo_root.id');
 
+        /**
+         * See old version of this module Reference (#0c572cd).
+         * @see \Annotate\Api\Adapter\AnnotationAdapter::buildQuery()
+         * @see \ApiInfo\Module::limitMediaQuery()
+         * @see \Reference\Mvc\Controller\Plugin\References::searchQuery()
+         */
+
         // The subquery cannot manage the parameters, since there are
         // two independant queries, but they use the same aliases. Since
         // number of ids may be great, it will be possible to create a
