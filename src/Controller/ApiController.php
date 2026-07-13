@@ -1442,13 +1442,17 @@ class ApiController extends AbstractRestfulController
     {
         $basename = $resource;
 
-        $options = new \ZipStream\Option\Archive();
-        $options->setSendHttpHeaders(true);
-
-        $zip = new \ZipStream\ZipStream("$basename.zip", $options);
+        // ZipStream v3 requires PHP 8.1+ and uses named constructor arguments.
+        $zip = new \ZipStream\ZipStream(
+            outputName: "$basename.zip",
+            sendHttpHeaders: true,
+        );
 
         $content = json_encode($result, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-        $zip->addFile("$basename.json", $content);
+        $zip->addFile(
+            fileName: "$basename.json",
+            data: $content,
+        );
 
         $zip->finish();
     }
