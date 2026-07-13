@@ -8,7 +8,7 @@ use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class SiteSettingsListFactory implements FactoryInterface
 {
-    public function __invoke(ContainerInterface $services, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $services, $requestedName, ?array $options = null)
     {
         // TODO Should we use doctrine orm or dbal connection for performance?
         /** @var \Doctrine\ORM\EntityManager $entityManager */

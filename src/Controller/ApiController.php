@@ -456,7 +456,7 @@ class ApiController extends AbstractRestfulController
      *
      * @see https://github.com/omniti-labs/jsend#jsend
      */
-    protected function returnError($message, $statusCode = Response::STATUS_CODE_400, array $errors = null)
+    protected function returnError($message, $statusCode = Response::STATUS_CODE_400, ?array $errors = null)
     {
         $response = $this->getResponse();
         $response->setStatusCode($statusCode);
@@ -765,7 +765,7 @@ class ApiController extends AbstractRestfulController
     /**
      * Provide the full results for a tree of resources, mainly for d3js.
      */
-    protected function getTree(string $resource = null, array $query = []): array
+    protected function getTree(?string $resource = null, array $query = []): array
     {
         $isResource = empty($resource) || $resource === 'resources';
 

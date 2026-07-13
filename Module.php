@@ -461,7 +461,7 @@ class Module extends AbstractModule
      * @param QueryBuilder $qb
      * @param array $query
      */
-    protected function limitMediaQuery(QueryBuilder $qb, array $query = null): void
+    protected function limitMediaQuery(QueryBuilder $qb, ?array $query = null): void
     {
         if (empty($query)) {
             return;
