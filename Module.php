@@ -2,6 +2,12 @@
 
 namespace ApiInfo;
 
+// Load the module dependencies when installed as a zip.
+// With composer, libraries are stored in omeka vendor/ and the module has none.
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
 use Doctrine\ORM\QueryBuilder;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;

@@ -1440,8 +1440,6 @@ class ApiController extends AbstractRestfulController
 
     protected function zip(string $resource, $result): void
     {
-        require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
-
         $basename = $resource;
 
         $options = new \ZipStream\Option\Archive();
