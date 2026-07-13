@@ -1,10 +1,46 @@
 {
+    "name": "daniel-km/omeka-s-module-api-info",
+    "type": "omeka-s-module",
+    "description": "Module for Omeka S: Provide various infos about Omeka sites and resources that are not available in the default api, mainly for external apps.",
+    "keywords": [
+        "Omeka S",
+        "Omeka S module",
+        "api",
+        "back-end"
+    ],
+    "license": "CECILL-2.1",
+    "homepage": "https://gitlab.com/Daniel-KM/omeka-s-module-ApiInfo",
+    "authors": [
+        {
+            "name": "Daniel Berthereau",
+            "email": "Daniel.packagist@Berthereau.net"
+        }
+    ],
+    "support": {
+        "issues": "https://gitlab.com/Daniel-KM/omeka-s-module-ApiInfo/-/issues",
+        "forum": "https://forum.omeka.org/"
+    },
+    "_require (not set until Omeka S merges PR #2432)": {
+        "omeka/omeka-s": "^4.0"
+    },
     "require": {
-        "php": ">=7.4",
         "maennchen/zipstream-php": "^2.2"
     },
-    "replace": {
+    "provide": {
         "psr/http-message": "*",
         "symfony/polyfill-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ApiInfo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ApiInfoTest\\": "tests/ApiInfoTest/"
+        }
+    },
+    "extra": {
+        "installer-name": "ApiInfo"
     }
 }
