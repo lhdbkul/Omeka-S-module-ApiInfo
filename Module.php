@@ -12,14 +12,39 @@ use Doctrine\ORM\QueryBuilder;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\View\Model\ViewModel;
 use Omeka\Module\AbstractModule;
+use Omeka\Module\Exception\ModuleCannotInstallException;
 
 class Module extends AbstractModule
 {
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function install(ServiceLocatorInterface $serviceLocator): void
+    {
+        $this->checkPhpVersion($serviceLocator);
+    }
+
+    public function upgrade($oldVersion, $newVersion, ServiceLocatorInterface $serviceLocator): void
+    {
+        $this->checkPhpVersion($serviceLocator);
+    }
+
+    /**
+     * ZipStream v3 (used to stream the "zip" output) requires PHP 8.1 or later.
+     */
+    protected function checkPhpVersion(ServiceLocatorInterface $serviceLocator): void
+    {
+        if (PHP_VERSION_ID < 80100) {
+            $translator = $serviceLocator->get('MvcTranslator');
+            throw new ModuleCannotInstallException(
+                $translator->translate('This module requires PHP 8.1 or later.') // @translate
+            );
+        }
     }
 
     public function onBootstrap(MvcEvent $event): void
