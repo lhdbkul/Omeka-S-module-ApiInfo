@@ -124,6 +124,7 @@ class ApiController extends AbstractRestfulController
             case 'media':
             case 'item_sets':
             case $resource === 'annotations' && $this->hasResource('annotations'):
+            case $resource === 'digital_objects' && $this->hasResource('digital_objects'):
                 $query = $this->cleanQuery(true);
                 $output = $query['output'] ?? 'default';
                 switch ($output) {
@@ -494,6 +495,9 @@ class ApiController extends AbstractRestfulController
             // TODO Use a filter.
             if ($this->hasResource('annotations')) {
                 $data['annotations']['total'] = $api->search('annotations', $query)->getTotalResults();
+            }
+            if ($this->hasResource('digital_objects')) {
+                $data['digital_objects']['total'] = $api->search('digital_objects', $query)->getTotalResults();
             }
             $data += $this->getInfosOthers();
         } elseif ($resource === 'media') {
@@ -1140,6 +1144,7 @@ class ApiController extends AbstractRestfulController
             'site_pages',
             // Modules.
             'annotations',
+            'digital_objects',
             'collecting_forms',
         ];
         $types = $this->params()->fromQuery('types', []);

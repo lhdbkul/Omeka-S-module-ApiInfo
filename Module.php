@@ -53,6 +53,11 @@ class Module extends AbstractModule
             'rep.resource.json',
             [$this, 'filterJsonLdResource']
         );
+        $sharedEventManager->attach(
+            \DigitalObject\Api\Representation\DigitalObjectRepresentation::class,
+            'rep.resource.json',
+            [$this, 'filterJsonLdResource']
+        );
 
         $sharedEventManager->attach(
             \Omeka\Api\Representation\ResourceTemplateRepresentation::class,
