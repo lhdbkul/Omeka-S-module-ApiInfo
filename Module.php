@@ -591,7 +591,7 @@ class Module extends AbstractModule
             // TODO Some blocks are not renderable currently.
             try {
                 $content = $viewRenderer->render($view);
-            } catch (\Exception$e) {
+            } catch (\Throwable$e) {
                 $content = $e;
             }
         } else {
@@ -605,13 +605,13 @@ class Module extends AbstractModule
             // $view->addChild($contentView, 'content');
             try {
                 $content = $viewRenderer->render($contentView);
-            } catch (\Exception$e) {
+            } catch (\Throwable$e) {
                 $content = $e;
             }
             $view->setVariable('content', $content);
             try {
                 $content = $viewRenderer->render($view);
-            } catch (\Exception$e) {
+            } catch (\Throwable$e) {
                 $content = $e;
             }
         }

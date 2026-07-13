@@ -291,7 +291,7 @@ class ApiController extends AbstractRestfulController
             // Finish dispatching the request.
             $this->checkContentType($request);
             parent::onDispatch($event);
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             $this->logger()->err((string) $e);
             return $this->getErrorResult($event, $e);
         }
@@ -1178,7 +1178,7 @@ class ApiController extends AbstractRestfulController
                             : array_slice($result[$type], $rankResource - 1, 3, true);
                     }
                 }
-            } catch (\Exception $e) {
+            } catch (\Throwable $e) {
                 // Avoid to check the modules api keys.
             }
         }
