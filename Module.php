@@ -78,7 +78,7 @@ class Module extends AbstractModule
             \Omeka\Api\Representation\ItemSetRepresentation::class,
             'rep.resource.json',
             [$this, 'filterJsonLdResource']
-                );
+        );
         $sharedEventManager->attach(
             \Annotate\Api\Representation\AnnotationRepresentation::class,
             'rep.resource.json',

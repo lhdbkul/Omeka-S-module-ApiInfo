@@ -3,8 +3,8 @@
 namespace ApiInfo\Service\ControllerPlugin;
 
 use ApiInfo\Mvc\Controller\Plugin\SiteSettingsList;
-use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 
 class SiteSettingsListFactory implements FactoryInterface
 {

@@ -3,8 +3,8 @@
 namespace ApiInfo\Service\Controller;
 
 use ApiInfo\Controller\ApiController;
-use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
 
 class ApiControllerFactory implements FactoryInterface
 {
