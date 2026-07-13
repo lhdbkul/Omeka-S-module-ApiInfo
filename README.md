@@ -19,6 +19,8 @@ Installation
 
 See general end user documentation for [installing a module].
 
+This module requires the module [Common], that should be installed first.
+
 * From the zip
 
 Download the last release [ApiInfo.zip] from the list of releases, and
@@ -28,6 +30,15 @@ uncompress it in the `modules` directory.
 
 If the module was installed from the source, rename the name of the folder of
 the module to `ApiInfo`.
+
+* For test
+
+The module includes a comprehensive test suite with unit and functional tests.
+Run them from the root of Omeka:
+
+```sh
+vendor/bin/phpunit -c modules/ApiInfo/phpunit.xml --testdox
+```
 
 
 Quick start
@@ -195,7 +206,9 @@ altered, and that no provisions are either added or removed herefrom.
 Copyright
 ---------
 
-* Copyright Daniel Berthereau, 2019-2023 (see [Daniel-KM] on GitLab)
+* Copyright Daniel Berthereau, 2019-2026 (see [Daniel-KM] on GitLab)
+
+This module was first built for [Hyperotlet].
 
 
 [Api Info]: https://gitlab.com/Daniel-KM/Omeka-S-module-ApiInfo
@@ -212,5 +225,6 @@ Copyright
 [GNU/GPL]: https://www.gnu.org/licenses/gpl-3.0.html
 [FSF]: https://www.fsf.org
 [OSI]: http://opensource.org
+[Hyperotlet]: https://hyperotlet.huma-num.fr
 [GitLab]: https://gitlab.com/Daniel-KM
 [Daniel-KM]: https://gitlab.com/Daniel-KM "Daniel Berthereau"
