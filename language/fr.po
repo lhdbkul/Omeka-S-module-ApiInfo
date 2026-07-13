@@ -7,32 +7,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-04 00:00+0000\n"
-"PO-Revision-Date: 2021-01-04 00:00+0000\n"
+"POT-Creation-Date: 2026-07-13 00:00+0000\n"
+"PO-Revision-Date: 2026-07-13 00:00+0000\n"
+"Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
-"Language-Team: \n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: src/Controller/ApiController.php:435
+#: Module.php:45
+msgid "This module requires PHP 8.1 or later."
+msgstr "Ce module requiert php 8.1 ou ultérieur."
+
+#: src/Controller/ApiController.php:448
 msgid "Method Not Allowed"
 msgstr "Méthode non autorisée"
 
-#: src/Controller/ApiController.php:503
+#: src/Controller/ApiController.php:527
 msgid "Multiple resources are not implemented currently (only items)."
-msgstr "L’utilisation de plusieurs types de ressource n'est pas implémentée actuellement (seulement les contenus)."
+msgstr ""
+"L’utilisation de plusieurs types de ressource n'est pas implémentée "
+"actuellement (seulement les contenus)."
 
-#: src/Controller/ApiController.php:536 src/Controller/ApiController.php:703
+#: src/Controller/ApiController.php:560 src/Controller/ApiController.php:728
 msgid "Payload too large."
 msgstr "La sortie est trop grosse."
 
-#: src/Controller/ApiController.php:692 src/Controller/ApiController.php:753
+#: src/Controller/ApiController.php:717 src/Controller/ApiController.php:778
 msgid "Multiple resources are not implemented currently."
-msgstr "L’utilisation de plusieurs types de ressource n'est pas implémentée actuellement."
+msgstr ""
+"L’utilisation de plusieurs types de ressource n'est pas implémentée "
+"actuellement."
 
-#: src/Controller/ApiController.php:830
+#: src/Controller/ApiController.php:862
 msgid "Tree"
 msgstr "Arborescence"
