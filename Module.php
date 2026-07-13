@@ -643,7 +643,7 @@ class Module extends AbstractModule
             ->addOrderBy('property.id', 'asc')
             ->addGroupBy('property.id')
         ;
-        $properties = $connection->executeQuery($qb)->fetchAllAssociative();
+        $properties = $connection->executeQuery($qb->getSQL(), $qb->getParameters())->fetchAllAssociative();
         $properties = array_combine(array_column($properties, 'id'), $properties);
         return $properties;
     }
