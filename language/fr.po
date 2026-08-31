@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 00:00+0000\n"
-"PO-Revision-Date: 2026-07-13 00:00+0000\n"
+"POT-Creation-Date: 2026-08-31 00:00+0000\n"
+"PO-Revision-Date: 2026-08-31 00:00+0000\n"
 "Last-Translator: Daniel Berthereau <Daniel.fr@Berthereau.net>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -21,26 +21,26 @@ msgstr ""
 msgid "This module requires PHP 8.1 or later."
 msgstr "Ce module requiert php 8.1 ou ultérieur."
 
-#: src/Controller/ApiController.php:448
+#: src/Controller/ApiController.php:449
 msgid "Method Not Allowed"
 msgstr "Méthode non autorisée"
 
-#: src/Controller/ApiController.php:527
+#: src/Controller/ApiController.php:531
 msgid "Multiple resources are not implemented currently (only items)."
 msgstr ""
 "L’utilisation de plusieurs types de ressource n'est pas implémentée "
 "actuellement (seulement les contenus)."
 
-#: src/Controller/ApiController.php:560 src/Controller/ApiController.php:728
+#: src/Controller/ApiController.php:564 src/Controller/ApiController.php:732
 msgid "Payload too large."
 msgstr "La sortie est trop grosse."
 
-#: src/Controller/ApiController.php:717 src/Controller/ApiController.php:778
+#: src/Controller/ApiController.php:721 src/Controller/ApiController.php:782
 msgid "Multiple resources are not implemented currently."
 msgstr ""
 "L’utilisation de plusieurs types de ressource n'est pas implémentée "
 "actuellement."
 
-#: src/Controller/ApiController.php:862
+#: src/Controller/ApiController.php:866
 msgid "Tree"
 msgstr "Arborescence"

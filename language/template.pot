@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-13 00:00+0000\n"
+"POT-Creation-Date: 2026-08-31 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,22 +21,22 @@ msgstr ""
 msgid "This module requires PHP 8.1 or later."
 msgstr ""
 
-#: src/Controller/ApiController.php:448
+#: src/Controller/ApiController.php:449
 msgid "Method Not Allowed"
 msgstr ""
 
-#: src/Controller/ApiController.php:527
+#: src/Controller/ApiController.php:531
 msgid "Multiple resources are not implemented currently (only items)."
 msgstr ""
 
-#: src/Controller/ApiController.php:560 src/Controller/ApiController.php:728
+#: src/Controller/ApiController.php:564 src/Controller/ApiController.php:732
 msgid "Payload too large."
 msgstr ""
 
-#: src/Controller/ApiController.php:717 src/Controller/ApiController.php:778
+#: src/Controller/ApiController.php:721 src/Controller/ApiController.php:782
 msgid "Multiple resources are not implemented currently."
 msgstr ""
 
-#: src/Controller/ApiController.php:862
+#: src/Controller/ApiController.php:866
 msgid "Tree"
 msgstr ""
