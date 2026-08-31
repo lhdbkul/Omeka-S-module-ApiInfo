@@ -89,6 +89,11 @@ class Module extends AbstractModule
             'rep.resource.json',
             [$this, 'filterJsonLdResource']
         );
+        $sharedEventManager->attach(
+            \Thesaurus\Api\Representation\ConceptRepresentation::class,
+            'rep.resource.json',
+            [$this, 'filterJsonLdResource']
+        );
 
         $sharedEventManager->attach(
             \Omeka\Api\Representation\ResourceTemplateRepresentation::class,
